@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta content="IE=edge" http-equiv="X-UA-Compatible"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title></title><script>const getAppIdFromPath = () => {
+        return location.pathname.split('/')?.[1];
+      };
+      const appid = getAppIdFromPath();
+      const urlData = new URL(location.href);
+      urlData.pathname = `${appid}/__roibest_install.html`;
+      location.href = urlData.href;</script></head><body></body></html>

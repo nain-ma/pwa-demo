@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>播放页</title>
+    <!-- <script type="text/javascript" src="/sdk/index.global.js"></script>
+      -->
+    <script type="module" src="./src/sdk/index.ts"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: "Helvetica Neue", sans-serif;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+      }
+      .card {
+        background-color: #111;
+        padding: 20px;
+        border-radius: 12px;
+      }
+      .thumbnail {
+        position: relative;
+        width: 200px;
+        margin: 0 auto;
+      }
+      .thumbnail img {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .play-button::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 12px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+      .subtitle {
+        font-size: 14px;
+        color: #ccc;
+        margin-top: 4px;
+        margin-bottom: 16px;
+      }
+      .tag {
+        display: inline-block;
+        background-color: #444;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+      .button {
+        background: linear-gradient(to right, #ff00cc, #ff3366);
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="thumbnail">
+        <img src="/video/cover.jpg" alt="封面图" />
+        <div class="play-button"></div>
+      </div>
+      <div class="title">她带崽离开后，厉总追疯了</div>
+      <div class="subtitle">不要直到失去才想起来珍惜！</div>
+      <div class="tag">时霖</div>
+      <br />
+      <button class="button" id="play-btn">▶ 立即播放</button>
+    </div>
+    <script>
+      const sdk = window.RB_SDK;
+      const url = new URL(location.href);
+      url.pathname = "/play";
+      const homeUrl = url.toString();
+
+      document.getElementById("play-btn").addEventListener("click", () => {
+        sdk.openChrome(homeUrl);
+      });
+
+      const searchParams = new URLSearchParams(location.search);
+
+      // 自动跳转
+      // if (!sdk.isChrome()) {
+      //   sdk.toChrome(homeUrl);
+      // } else {
+      //   location.href = homeUrl;
+      // }
+    </script>
+  </body>
+</html>

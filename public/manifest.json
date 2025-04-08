@@ -1,0 +1,59 @@
+{
+  "id": "6903015113",
+  "name": "H5GAME",
+  "short_name": "H5GAME",
+  "default_lang": "en",
+  "categories": ["photo", "productivity", "utilities"],
+  "scope": "./",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000",
+  "background_color": "#fff",
+  "description": "",
+  "screenshots": [
+    {
+      "src": "./roibest/screenshot/screenshot0.webp",
+      "type": "image/webp",
+      "sizes": "474x1024"
+    },
+    {
+      "src": "./roibest/screenshot/screenshot1.webp",
+      "type": "image/webp",
+      "sizes": "474x1024"
+    },
+    {
+      "src": "./roibest/screenshot/screenshot2.webp",
+      "type": "image/webp",
+      "sizes": "474x1024"
+    },
+    {
+      "src": "./roibest/screenshot/screenshot3.webp",
+      "type": "image/webp",
+      "sizes": "474x1024"
+    },
+    {
+      "src": "./roibest/screenshot/screenshot4.webp",
+      "type": "image/webp",
+      "sizes": "474x1024"
+    }
+  ],
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./roibest/icons/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./roibest/icons/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "any"
+}

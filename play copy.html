@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>播放页</title>
+    <link rel="manifest" href="/manifest.json" />
+    <script type="module" src="./src/sdk/index.ts"></script>
+    <!-- <script type="text/javascript" src="/sdk/index.global.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.1/vconsole.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+      }
+
+      .video-wrapper {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: #000;
+        cursor: pointer;
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 保持比例裁剪 */
+      }
+
+      .subtitle {
+        position: absolute;
+        bottom: 80px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        pointer-events: none;
+      }
+
+      .play-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s;
+      }
+
+      .play-overlay::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 20px solid white;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-wrapper" id="videoWrapper">
+      <video
+        id="video"
+        src="/video/video.mp4"
+        playsinline
+        webkit-playsinline
+      ></video>
+      <div class="play-overlay" id="playOverlay"></div>
+    </div>
+
+    <script>
+      const video = document.getElementById("video");
+      const overlay = document.getElementById("playOverlay");
+      const wrapper = document.getElementById("videoWrapper");
+
+      wrapper.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+
+      video.addEventListener("play", () => {
+        overlay.classList.add("hidden");
+      });
+
+      video.addEventListener("pause", () => {
+        overlay.classList.remove("hidden");
+      });
+    </script>
+    <script>
+      const sdk = window.RB_SDK;
+      sdk.init();
+      var vConsole = new VConsole();
+      console.log("Hello world");
+
+      // 自动跳转
+      if (!sdk.isChrome()) {
+        location.href = landingUrl;
+      }
+    </script>
+  </body>
+</html>

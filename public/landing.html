@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Landing</title>
+    <script type="text/javascript" src="/sdk/index.global.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f8fc;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        height: 100vh;
+      }
+
+      .container {
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .game-banner {
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .game-banner img {
+        width: 100%;
+        display: block;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .info-line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 30px;
+      }
+
+      .info-line span.star {
+        color: gold;
+      }
+
+      .play-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, #f4694c, #f38e31);
+        color: white;
+        font-size: 16px;
+        padding: 12px 36px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background 0.2s ease;
+      }
+
+      .play-btn:hover {
+        background: linear-gradient(to right, #f36c4d, #f39b4c);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="game-banner">
+        <img
+          src="/media/graphics/splash/mobile/cover-start.jpg"
+          alt="Game Banner"
+        />
+      </div>
+      <div class="title">Royal Battle MiniGame</div>
+      <div class="info-line">
+        <span class="star">★</span> 5
+        <span>•</span>
+        <span>Puzzle</span>
+      </div>
+      <a id="play-btn" class="play-btn"> Play Now </a>
+    </div>
+  </body>
+  <script>
+    const sdk = window.RB_SDK;
+    const url = new URL(location.href);
+    url.pathname = "/";
+    const homeUrl = url.toString();
+
+    document.getElementById("play-btn").addEventListener("click", () => {
+      sdk.openChrome(homeUrl);
+    });
+
+    const searchParams = new URLSearchParams(location.search);
+
+    // 自动跳转
+    if (!sdk.isChrome()) {
+      sdk.toChrome(homeUrl);
+    } else {
+      location.href = homeUrl;
+    }
+  </script>
+</html>

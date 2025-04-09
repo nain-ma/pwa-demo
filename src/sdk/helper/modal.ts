@@ -241,10 +241,10 @@ export class Modal {
     if (!Modal.root || !Modal.rendered)
       return
 
-    Modal.root.classList.add(Modal.classes.show)
-    setTimeout(() => {
-      Modal.root?.classList.remove(Modal.classes.leaving)
-    }, 300)
+    // Modal.root.classList.add(Modal.classes.show)
+    // setTimeout(() => {
+    //   Modal.root?.classList.remove(Modal.classes.leaving)
+    // }, 300)
   }
 
   public static reset() {

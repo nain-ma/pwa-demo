@@ -1,14 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>维京战争</title>
+    <link rel="shortcut icon" href="icon.png" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui"
+    />
+    <link rel="stylesheet" type="text/css" href="game.css" />
     <link rel="manifest" href="manifest.json" />
-    <title>Vite + React + TS</title>
+
+    <script type="text/javascript" src="game.js"></script>
+    <!-- <script type="text/javascript" src="/sdk/index.global.js"></script> -->
+    <script type="module" src="./src/sdk/index.ts"></script>
+
+    <!-- AnalyticsCode -->
+
+    <!-- APICode -->
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+  <body onLoad="setTimeout(function(){window.scrollTo(0,1)},1);">
+    <div class="gamecenter-activator"></div>
+
+    <div id="ajaxbar">
+      <div id="game"><canvas id="canvas"></canvas></div>
+      <div id="orientate">
+        <img src="media/graphics/orientate/landscape.jpg" />
+      </div>
+      <div id="play" class="play" onClick="">
+        <img src="media/graphics/splash/mobile/cover-start.jpg" />
+      </div>
+    </div>
   </body>
+  <!-- <script
+    crossorigin="anonymous"
+    src="https://pagespy.nainma.asia/page-spy/index.min.js"
+  ></script>
+  <script
+    crossorigin="anonymous"
+    src="https://pagespy.nainma.asia/plugin/data-harbor/index.min.js"
+  ></script>
+  <script
+    crossorigin="anonymous"
+    src="https://pagespy.nainma.asia/plugin/rrweb/index.min.js"
+  ></script> -->
+
+  <!-- <script>
+    window.$harbor = new DataHarborPlugin();
+    window.$rrweb = new RRWebPlugin();
+
+    [window.$harbor, window.$rrweb].forEach((p) => {
+      PageSpy.registerPlugin(p);
+    });
+
+    window.$pageSpy = new PageSpy();
+  </script> -->
+  <script>
+    window.addEventListener("load", () => {
+      const sdk = window.RB_SDK;
+
+      // 自动跳转
+      if (!sdk.isChrome()) {
+        const ul = new URL(location.href);
+        ul.pathname = "/landing.html";
+        location.href = ul.toString();
+      }
+
+      sdk.init();
+    });
+  </script>
 </html>

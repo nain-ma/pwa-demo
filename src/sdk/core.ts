@@ -61,8 +61,8 @@ export class PWASDK implements PWASDKType {
     //   }, 2000)
     // }
 
-    // 调试逻辑
-    // 触发安装后 2s 后触发订阅
+    // // 调试逻辑
+    // // 触发安装后 2s 后触发订阅
     // this.on('install-prompt', handleSubcrib)
     // this.on('install-cancel', handleSubcrib)
 
@@ -190,84 +190,84 @@ export class PWASDK implements PWASDKType {
     return v && v !== 'false' ? v : false
   }
 
-  popoverVideoLaunch() {
-    if (document.getElementById('app-launch-video-popover')) {
-      return
-    }
+  // popoverVideoLaunch() {
+  //   if (document.getElementById('app-launch-video-popover')) {
+  //     return
+  //   }
 
-    const template = `
-      <div class="pwa-launch-popover" style="
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
-        padding: 16px;
-        font-family: sans-serif;
-        z-index: 9999;
-        width: 500px;
-        height: 300px;
-      ">
-        <div class="pwa-launch-content" style="display: flex; align-items: center; gap: 12px;">
-          <img class="pwa-launch-icon" src="/icon.png" style="width: 48px; height: 48px; border-radius: 8px;" />
-        </div>
+  //   const template = `
+  //     <div class="pwa-launch-popover" style="
+  //       position: fixed;
+  //       top: 50%;
+  //       left: 50%;
+  //       transform: translate(-50%, -50%);
+  //       background: #fff;
+  //       border-radius: 12px;
+  //       box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+  //       padding: 16px;
+  //       font-family: sans-serif;
+  //       z-index: 9999;
+  //       width: 500px;
+  //       height: 300px;
+  //     ">
+  //       <div class="pwa-launch-content" style="display: flex; align-items: center; gap: 12px;">
+  //         <img class="pwa-launch-icon" src="/icon.png" style="width: 48px; height: 48px; border-radius: 8px;" />
+  //       </div>
     
-        <button class="pwa-launch-btn" style="
-          width: 100%;
-          margin-top: 16px;
-          padding: 12px 0;
-          font-size: 16px;
-          font-weight: bold;
-          color: #fff;
-          background: #007bff;
-          border: none;
-          border-radius: 8px;
-        ">
-          打开 App, 高清观看
-        </button>
+  //       <button class="pwa-launch-btn" style="
+  //         width: 100%;
+  //         margin-top: 16px;
+  //         padding: 12px 0;
+  //         font-size: 16px;
+  //         font-weight: bold;
+  //         color: #fff;
+  //         background: #007bff;
+  //         border: none;
+  //         border-radius: 8px;
+  //       ">
+  //         打开 App, 高清观看
+  //       </button>
     
-        <div class="pwa-launch-close" style="
-          position: absolute;
-          top: 8px;
-          right: 12px;
-          font-size: 20px;
-          color: #999;
-          cursor: pointer;
-        ">&times;</div>
-      </div>
-    `
+  //       <div class="pwa-launch-close" style="
+  //         position: absolute;
+  //         top: 8px;
+  //         right: 12px;
+  //         font-size: 20px;
+  //         color: #999;
+  //         cursor: pointer;
+  //       ">&times;</div>
+  //     </div>
+  //   `
 
-    const popover = new DOMParser()
-      .parseFromString(template, 'text/html')
-      .querySelector('.pwa-launch-popover') as HTMLElement
+  //   const popover = new DOMParser()
+  //     .parseFromString(template, 'text/html')
+  //     .querySelector('.pwa-launch-popover') as HTMLElement
 
-    if (!popover)
-      return
+  //   if (!popover)
+  //     return
 
-    // 设置唯一ID
-    popover.id = 'app-launch-video-popover'
+  //   // 设置唯一ID
+  //   popover.id = 'app-launch-video-popover'
 
-    // 绑定启动按钮事件
-    popover.querySelector('.pwa-launch-btn')?.addEventListener('click', () => {
-      if (this.isInstalled()) {
-        const ul = new URL(location.href)
-        ul.searchParams.set('launch_flag', 'true')
-        window.open(ul.toString(), '_blank')
-      }
-      else {
-        this.launchFullScreen()
-      }
-    })
+  //   // 绑定启动按钮事件
+  //   popover.querySelector('.pwa-launch-btn')?.addEventListener('click', () => {
+  //     if (this.isInstalled()) {
+  //       const ul = new URL(location.href)
+  //       ul.searchParams.set('launch_flag', 'true')
+  //       window.open(ul.toString(), '_blank')
+  //     }
+  //     else {
+  //       this.launchFullScreen()
+  //     }
+  //   })
 
-    // 绑定关闭按钮事件
-    popover.querySelector('.pwa-launch-close')?.addEventListener('click', () => {
-      this.closePopover(popover)
-    })
+  //   // 绑定关闭按钮事件
+  //   popover.querySelector('.pwa-launch-close')?.addEventListener('click', () => {
+  //     this.closePopover(popover)
+  //   })
 
-    document.body.appendChild(popover)
-  }
+  //   document.body.appendChild(popover)
+  // }
 
   popoverLaunch() {
     if (document.getElementById('app-launch-popover')) {
@@ -276,11 +276,13 @@ export class PWASDK implements PWASDKType {
 
     const template = `
       <div class="pwa-launch-video-popover" style="
-        position: fixed;
+       position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: #fff;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
         box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
         padding: 16px;
         font-family: sans-serif;
@@ -469,29 +471,6 @@ export class PWASDK implements PWASDKType {
         })
     })
   }
-
-  // async subscribePushNotification() {
-  //   if (!this.isServiceWorkerSupported()) {
-  //     throw new Error('Push notifications are not supported')
-  //   }
-
-  //   try {
-  //     const registration = await navigator.serviceWorker.ready
-  //     const subscription = await registration.pushManager.subscribe({
-  //       userVisibleOnly: this.options.pushOptions?.userVisibleOnly ?? true,
-  //       applicationServerKey: urlB64ToUint8Array(this.options.pushOptions?.applicationServerKey ?? ''),
-  //     }).finally(() => {
-  //       this.popoverLaunch()
-  //     })
-  //     this.pushSubscription = subscription
-  //     this.trigger('push-subscribed', subscription)
-  //     return subscription
-  //   }
-  //   catch (error) {
-  //     this.trigger('push-error', error)
-  //     throw error
-  //   }
-  // }
 
   async unsubscribePushNotification() {
     if (this.pushSubscription) {
